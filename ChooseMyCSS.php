@@ -31,7 +31,8 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 	function hooks() {
         return array(
             'EVENT_LAYOUT_RESOURCES' => 'head_layout',
-			'EVENT_ACCOUNT_PREF_UPDATE_FORM' => 'account_pref'
+			'EVENT_ACCOUNT_PREF_UPDATE_FORM' => 'account_pref',
+			'EVENT_ACCOUNT_PREF_UPDATE' => 'account_update',
         );
     }
 
@@ -50,6 +51,22 @@ class ChooseMyCSSPlugin extends MantisPlugin {
                 )
             )
 		);
+	}
+
+	function get_available_css( $p_userid ) {
+		$t_file_table = plugin_table('file');
+		$t_user_table = plugin_table('user');
+		$t_file_array = array();
+		$t_query = "SELECT id, title
+		            FROM $t_file_table
+					LEFT JOIN $t_user_table
+						ON $t_file_table.id = $t_user_table.file_id
+					WHERE mandatory IS FALSE";
+		$t_result = db_query($t_query);
+		while( $t_row = db_fetch_array( $t_result ) ) {
+			$t_file_array[ $t_row['id'] ] = $t_row['title'];
+		}
+		return $t_file_array;
 	}
 
 	function get_user_css( $p_userid ) {
@@ -95,8 +112,30 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 		}
 	}
 
-	function account_pref() {
-		return null;
+	function account_pref( $p_event, $p_user_id ) {
+		$t_user_id = auth_get_current_user_id();
+
+		echo '<tr>'
+            . '<td class="category">' . plugin_lang_get( 'pref_file_title' ) . '</td>'
+			. '<td>'
+			. '<select id="file_title">';
+
+		$t_user_css_array = $this->get_user_css( $t_user_id );
+        foreach( $t_user_css_array as $title => $data ) {
+            echo '<option value="' . $title . '">' . $title . '</option>';
+        }
+		$t_user_css_array = $this->get_available_css( $t_user_id );
+        foreach( $t_user_css_array as $id => $title ) {
+            echo '<option value="' . $id . '">' . $title . '</option>';
+        }
+
+		echo '<select/>'
+			. '</td>'
+			. '</tr>';
+	}
+
+	function account_update( $p_event, $p_user_id ) {
+		return;
 	}
 }
 

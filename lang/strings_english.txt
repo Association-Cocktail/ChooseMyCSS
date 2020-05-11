@@ -25,3 +25,5 @@ $s_plugin_ChooseMyCSS_config_file_title = 'CSS file name';
 $s_plugin_ChooseMyCSS_config_file_action = 'Action';
 $s_plugin_ChooseMyCSS_no_files_configured = 'No CSS found';
 
+# Preferences page
+$s_plugin_ChooseMyCSS_pref_file_title = 'CSS file name';
