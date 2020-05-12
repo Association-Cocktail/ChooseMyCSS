@@ -115,23 +115,27 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 		}
 	}
 
+	/**
+	 * When updating user preferences, allowing user to choose
+	 * an additional CSS flie.
+	 * @param string Event name
+	 * @param int User ID
+	 */
 	function account_pref( $p_event, $p_user_id ) {
-		#$t_user_id = auth_get_current_user_id();
+		require_api( 'helper_api.php' );
 
 		$t_user_css_array = $this->get_available_css( $p_user_id );
 
 		echo '<tr>'
             . '<td class="category">' . plugin_lang_get( 'pref_file_title' ) . '</td>'
-			. '<td>';
-		#print_r( $t_user_css_array );
-		echo '<select id="file_title">'
+			. '<td>'
+			. '<select name="file_id">'
 			. '<option value="0" selected>' . plugin_lang_get( 'pref_no_file' ) . '</option>';
-
 		$t_user_css_array = $this->get_available_css( $p_user_id );
         foreach( $t_user_css_array as $t_file_array ) {
-            echo '<option value=' . $t_file_array['id'] 
-				. check_selected( (int)$t_file_array['user_id'], $p_user_id ) . '>'
-				. $t_file_array['title'] . '</option>';
+            echo '<option value=' . $t_file_array['id'];
+			echo check_selected( (int)$t_file_array['user_id'], (int)$p_user_id );
+			echo '>' . $t_file_array['title'] . '</option>';
         }
 
 		echo '<select/>'
@@ -140,7 +144,19 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 	}
 
 	function account_update( $p_event, $p_user_id ) {
-		return;
+		$f_file_id = gpc_get_int( 'file_id' );
+		$t_user_table = plugin_table('user');
+		if( 0 == $f_file_id ) {
+			$t_query = "DELETE FROM $t_user_table
+	                    WHERE user_id = $p_user_id";
+			$t_result = db_query($t_query);
+    		$t_rows_affected = db_num_rows( $t_result );
+		} else {
+			$t_query = "INSERT INTO $t_user_table (user_id, file_id)
+            		    VALUES (?, ?)";
+			$t_result = db_query( $t_query, array( $p_user_id, $f_file_id ) );
+		    $t_rows_affected = db_num_rows( $t_result );
+		}
 	}
 }
 
