@@ -57,14 +57,16 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 		$t_file_table = plugin_table('file');
 		$t_user_table = plugin_table('user');
 		$t_file_array = array();
-		$t_query = "SELECT id, title
+		$t_query = "SELECT id, title, user_id
 		            FROM $t_file_table
 					LEFT JOIN $t_user_table
 						ON $t_file_table.id = $t_user_table.file_id
-					WHERE mandatory IS FALSE";
+					WHERE mandatory IS FALSE
+						AND ( $t_user_table.user_id = $p_userid 
+							OR $t_user_table.user_id IS NULL)";
 		$t_result = db_query($t_query);
 		while( $t_row = db_fetch_array( $t_result ) ) {
-			$t_file_array[ $t_row['id'] ] = $t_row['title'];
+			array_push( $t_file_array , $t_row );
 		}
 		return $t_file_array;
 	}
@@ -100,33 +102,36 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 	}
 
 	function head_layout( $p_event ) {
-		$t_user_id = auth_get_current_user_id();
-
 		$t_mandatory_css_array = $this->get_mandatory_css();
 		foreach( $t_mandatory_css_array as $title => $data ) { 
 			echo '<style id="' . $title . '">' . $data . '</style>';
 		}
-		$t_user_css_array = $this->get_user_css( $t_user_id );
-		foreach( $t_user_css_array as $title => $data ) { 
-			echo '<style id="' . $title . '">' . $data . '</style>';
+		if( auth_is_user_authenticated() ) {
+			$t_user_id = auth_get_current_user_id();
+			$t_user_css_array = $this->get_user_css( $t_user_id );
+			foreach( $t_user_css_array as $title => $data ) { 
+				echo '<style id="' . $title . '">' . $data . '</style>';
+			}
 		}
 	}
 
 	function account_pref( $p_event, $p_user_id ) {
-		$t_user_id = auth_get_current_user_id();
+		#$t_user_id = auth_get_current_user_id();
+
+		$t_user_css_array = $this->get_available_css( $p_user_id );
 
 		echo '<tr>'
             . '<td class="category">' . plugin_lang_get( 'pref_file_title' ) . '</td>'
-			. '<td>'
-			. '<select id="file_title">';
+			. '<td>';
+		#print_r( $t_user_css_array );
+		echo '<select id="file_title">'
+			. '<option value="0" selected>' . plugin_lang_get( 'pref_no_file' ) . '</option>';
 
-		$t_user_css_array = $this->get_user_css( $t_user_id );
-        foreach( $t_user_css_array as $title => $data ) {
-            echo '<option value="' . $title . '">' . $title . '</option>';
-        }
-		$t_user_css_array = $this->get_available_css( $t_user_id );
-        foreach( $t_user_css_array as $id => $title ) {
-            echo '<option value="' . $id . '">' . $title . '</option>';
+		$t_user_css_array = $this->get_available_css( $p_user_id );
+        foreach( $t_user_css_array as $t_file_array ) {
+            echo '<option value=' . $t_file_array['id'] 
+				. check_selected( (int)$t_file_array['user_id'], $p_user_id ) . '>'
+				. $t_file_array['title'] . '</option>';
         }
 
 		echo '<select/>'
