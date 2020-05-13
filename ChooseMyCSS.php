@@ -57,13 +57,12 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 		$t_file_table = plugin_table('file');
 		$t_user_table = plugin_table('user');
 		$t_file_array = array();
-		$t_query = "SELECT id, title, user_id
+		$t_query = "SELECT DISTINCT id, title, user_id
 		            FROM $t_file_table
 					LEFT JOIN $t_user_table
 						ON $t_file_table.id = $t_user_table.file_id
-					WHERE mandatory IS FALSE
-						AND ( $t_user_table.user_id = $p_userid 
-							OR $t_user_table.user_id IS NULL)";
+						AND $t_user_table.user_id = $p_userid
+					WHERE mandatory IS FALSE";
 		$t_result = db_query($t_query);
 		while( $t_row = db_fetch_array( $t_result ) ) {
 			array_push( $t_file_array , $t_row );
