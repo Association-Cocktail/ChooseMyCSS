@@ -36,6 +36,12 @@ if( $f_submit_type == plugin_lang_get( 'config_new_file' ) ) {
 				WHERE id = ?";
     $t_result = db_query( $t_query, array( trim( $f_file_title ), $f_file_data, (int)$f_file_mandatory, $f_file_id ) );
     $t_rows_affected = db_num_rows( $t_result );
+	if ( ON == $f_file_mandatory ) {
+		$t_query = "DELETE FROM $t_user_table
+					WHERE file_id = ?";
+		$t_result = db_query( $t_query, array( $f_file_id ) );
+	    $t_rows_affected = db_num_rows( $t_result );
+	}
 } else if( $f_submit_type == plugin_lang_get( 'config_delete_file' ) ) {
     $f_file_id    = gpc_get_string( 'file_id' );
     $t_query = "DELETE f.*, u.*
