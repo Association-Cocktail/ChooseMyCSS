@@ -42,23 +42,25 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 							<table class="table table-bordered table-condensed table-striped">
 								<tr>
 									<td class="category">
-										<?php echo plugin_lang_get('new_file_title') ?>
+										<span class="required">*</span>
+										<label for="new_file_title"><?php echo plugin_lang_get('new_file_title') ?></label>
 									</td>
 									<td>
-										<input name="file_title" maxlength="30" size="30" value="" />
+										<input name="file_title" maxlength="30" size="30" value="" required/>
 									</td>
 								</tr>
 								<tr>
 									<td class="category">
-										<?php echo plugin_lang_get('new_file_data') ?>
+										<span class="required">*</span>
+										<label for="new_file_data"><?php echo plugin_lang_get('new_file_data') ?></label>
 									</td>
 									<td>
-										<textarea name="file_data" cols="70" rows="5" required></textarea>
+										<textarea name="file_data" cols="70" rows="5" class"form-control" required></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td class="category">
-										<?php echo plugin_lang_get('new_file_mandatory') ?>
+										<label for="new_file_mandatory"><?php echo plugin_lang_get('new_file_mandatory') ?></label>
 									</td>
 									<td>
 										<input type="checkbox" name="file_mandatory"/>
@@ -91,11 +93,15 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 						<div class="table-responsive">
 							<table class="table table-bordered table-condensed table-striped">
 
-								<tr>
-									<th><?php echo plugin_lang_get( 'config_file_title' ); ?></th>
-									<th><?php echo plugin_lang_get( 'config_file_data' ); ?></th>
-									<th class="center"><?php echo plugin_lang_get( 'config_file_mandatory' ); ?></th>
-									<th class="center"><?php echo plugin_lang_get( 'config_file_action' ); ?></th>
+								<tr class="category">
+									<th><label for="config_file_title">
+										<?php echo plugin_lang_get( 'config_file_title' ); ?></label></th>
+									<th><label for="config_file_data">
+										<?php echo plugin_lang_get( 'config_file_data' ); ?></label></th>
+									<th class="center"><label for="config_file_mandatory">
+										<?php echo plugin_lang_get( 'config_file_mandatory' ); ?></label></th>
+									<th class="center"><label for="config_file_action">
+										<?php echo plugin_lang_get( 'config_file_action' ); ?></label></th>
 								</tr>
 
 								<?php
@@ -119,7 +125,7 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 											<input name="file_title" maxlength="30" size="30" value="<?php echo $v_title; ?>" />
 										</td>
 										<td>
-											<textarea name="file_data" cols="70" rows="5" required><?php echo $v_data; ?></textarea>
+											<textarea name="file_data" cols="70" rows="5" class="form-control" required><?php echo $v_data; ?></textarea>
 										</td>
 										<td class="center">
 											<input type="checkbox" name="file_mandatory"
@@ -128,9 +134,10 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 										<td class="center">
 											<?php
 												echo '<input type="submit" name="submit" '
-													. 'class="btn btn-primary btn-action btn-round btn-xs" value="'
+													. 'class="btn btn-primary btn-send btn-round btn-xs" value="'
 													. plugin_lang_get('config_save_file') . '" />';
 												echo '&#160;';
+												echo '/';
 												echo '&#160;';
 												echo '<input type="submit" name="submit" '
 													. 'class="btn btn-primary btn-remove btn-round btn-xs" value="'
