@@ -70,7 +70,7 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 				</div>
 	
 				<div class="widget-toolbox padding-8 clearfix">
-					<input type="submit" name="submit" class="btn btn-primary btn-white btn-round"
+					<input type="submit" name="submit" class="btn btn-primary btn-new btn-round"
 						  value="<?php echo plugin_lang_get('config_new_file') ?>" />
 				</div>
 	
@@ -94,8 +94,8 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 								<tr>
 									<th><?php echo plugin_lang_get( 'config_file_title' ); ?></th>
 									<th><?php echo plugin_lang_get( 'config_file_data' ); ?></th>
-									<th><?php echo plugin_lang_get( 'config_file_mandatory' ); ?></th>
-									<th><?php echo plugin_lang_get( 'config_file_action' ); ?></th>
+									<th class="center"><?php echo plugin_lang_get( 'config_file_mandatory' ); ?></th>
+									<th class="center"><?php echo plugin_lang_get( 'config_file_action' ); ?></th>
 								</tr>
 
 								<?php
@@ -121,22 +121,21 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 										<td>
 											<textarea name="file_data" cols="70" rows="5" required><?php echo $v_data; ?></textarea>
 										</td>
-										<td style="text-align:center;">
+										<td class="center">
 											<input type="checkbox" name="file_mandatory"
 												<?php check_checked( (int)$v_mandatory, ON ); ?> />
 										</td>
-										<td>
-											<span class="pull-right">
+										<td class="center">
 											<?php
 												echo '<input type="submit" name="submit" '
-													. 'class="btn btn-primary btn-white btn-round btn-xs" value="'
+													. 'class="btn btn-primary btn-action btn-round btn-xs" value="'
 													. plugin_lang_get('config_save_file') . '" />';
 												echo '&#160;';
+												echo '&#160;';
 												echo '<input type="submit" name="submit" '
-													. 'class="btn btn-primary btn-white btn-round btn-xs" value="'
+													. 'class="btn btn-primary btn-remove btn-round btn-xs" value="'
 													. plugin_lang_get('config_delete_file') . '" />';
 											?>
-											</span>
 										</td>
 									</tr>
 								</form>
