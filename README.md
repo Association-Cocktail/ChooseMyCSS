@@ -36,6 +36,15 @@ All CSS files will be used before mandatory one choosed by a user.
 
 If you chose multy mandatory CSS files, they will be added in the order in which they are displayed.
 
+## Screen Shots
+
+![add CSS file](screenshots/add_file.png "To add new CSS file")
+
+![edit CSS files](screenshots/edit_file.png "To edit existing CSS file")
+
+![choose CSS file](screenshots/choose_file.png "Choose CSS file in account preferences")
+
+
 ## Support
 
 If you wish to file a
