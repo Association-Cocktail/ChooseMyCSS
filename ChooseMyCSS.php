@@ -151,7 +151,7 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 			$t_result = db_query($t_query);
     		$t_rows_affected = db_num_rows( $t_result );
 		} else {
-			$t_query = "INSERT INTO $t_user_table (user_id, file_id)
+			$t_query = "REPLACE INTO $t_user_table (user_id, file_id)
             		    VALUES (?, ?)";
 			$t_result = db_query( $t_query, array( $p_user_id, $f_file_id ) );
 		    $t_rows_affected = db_num_rows( $t_result );
