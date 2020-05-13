@@ -145,13 +145,12 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 	function account_update( $p_event, $p_user_id ) {
 		$f_file_id = gpc_get_int( 'file_id' );
 		$t_user_table = plugin_table('user');
-		if( 0 == $f_file_id ) {
-			$t_query = "DELETE FROM $t_user_table
-	                    WHERE user_id = $p_user_id";
-			$t_result = db_query($t_query);
-    		$t_rows_affected = db_num_rows( $t_result );
-		} else {
-			$t_query = "REPLACE INTO $t_user_table (user_id, file_id)
+		$t_query = "DELETE FROM $t_user_table
+					WHERE user_id = $p_user_id";
+		$t_result = db_query($t_query);
+    	$t_rows_affected = db_num_rows( $t_result );
+		if( 0 != $f_file_id ) {
+			$t_query = "INSERT INTO $t_user_table (user_id, file_id)
             		    VALUES (?, ?)";
 			$t_result = db_query( $t_query, array( $p_user_id, $f_file_id ) );
 		    $t_rows_affected = db_num_rows( $t_result );
