@@ -7,6 +7,7 @@ Copyright (c) 2020 Association Cocktail, Marc-Antoine TURBET-DELOF
 _ChooseMyCSS_ is a plugin for [MantisBT](http://mantisbt.org) that 
 allows the administrator to add some CSS files optionnal or mandatory for users.
 
+See the [Change log](CHANGELOG.md).
 
 ## Installation
 

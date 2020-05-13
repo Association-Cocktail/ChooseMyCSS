@@ -17,7 +17,7 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );    # Short description of the plugin
 		$this->page = 'config_page';           # Default plugin page
 
-		$this->version = '0.1.0';     # Plugin version string
+		$this->version = '0.2.0';     # Plugin version string
 		$this->requires = array(    # Plugin dependencies
 		    'MantisCore' => '2.24',  # Should always depend on an appropriate
 		                            # version of MantisBT
