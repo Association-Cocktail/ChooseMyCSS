@@ -1,0 +1,30 @@
+<?php
+/**
+ * ChooseMyCSS Plugin for MantisBT
+ * @link https://github.com/Association-cocktail/ChooseMyCSS
+ *
+ * @author    Marc-Antoine TURBET-DELOF<marc-antoine.turbet-delof@asso-cocktail.fr>
+ * @copyright Copyright (c) 2020 Association Cocktail, Marc-Antoine TURBET-DELOF
+ */
+
+$s_plugin_ChooseMyCSS_title = 'ChooseMyCSS';
+$s_plugin_ChooseMyCSS_description = 'Easy choose CSS files';
+
+# Config page
+$s_plugin_ChooseMyCSS_config = 'Configuration';
+$s_plugin_ChooseMyCSS_config_existing = 'Fichiers CSS existants';
+$s_plugin_ChooseMyCSS_config_new_file = 'Ajouter le fichier CSS';
+$s_plugin_ChooseMyCSS_config_save_file = 'Enregistrer';
+$s_plugin_ChooseMyCSS_config_delete_file = 'Supprimer';
+$s_plugin_ChooseMyCSS_new_file_data = 'Contenu du fichier CSS';
+$s_plugin_ChooseMyCSS_new_file_mandatory = 'Obligatoire';
+$s_plugin_ChooseMyCSS_new_file_title = 'Nom du fichier CSS';
+$s_plugin_ChooseMyCSS_config_file_data = 'Contenu du fichier CSS';
+$s_plugin_ChooseMyCSS_config_file_mandatory = 'Obligatoire';
+$s_plugin_ChooseMyCSS_config_file_title = 'Nom du fichier CSS';
+$s_plugin_ChooseMyCSS_config_file_action = 'Action';
+$s_plugin_ChooseMyCSS_no_files_configured = 'Aucun fichier CSS trouvé';
+
+# Preferences page
+$s_plugin_ChooseMyCSS_pref_file_title = 'Fichier CSS';
+$s_plugin_ChooseMyCSS_pref_no_file = '- Aucun fichier CSS -';
