@@ -3,11 +3,13 @@
  * ChooseMyCSS Plugin for MantisBT
  * @link https://github.com/Association-cocktail/ChooseMyCSS
  *
- * @author    Marc-Antoine TURBET-DELOF<marc-antoine.turbet-delof@asso-cocktail.fr>
+ * @author	Marc-Antoine TURBET-DELOF<marc-antoine.turbet-delof@asso-cocktail.fr>
  * @copyright Copyright (c) 2020 Association Cocktail, Marc-Antoine TURBET-DELOF
  */
 
-auth_reauthenticate( );
+require_api( 'helper_api.php' );
+
+auth_reauthenticate();
 access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 
 layout_page_header( plugin_lang_get( 'title' ) );
@@ -25,129 +27,135 @@ $t_form_security_field  = form_security_field( 'plugin_ChooseMyCSS_config_edit' 
 <div class="form-container" >
 
 	<form id="newfile-form" method="post" action="<?php echo plugin_page('config_edit') ?>">
-	    <?php echo $t_form_security_field ?>
-	    <div class="widget-box widget-color-blue2">
-	        <div class="widget-header widget-header-small">
-	            <h4 class="widget-title lighter">
-	                <i class="ace-icon fa fa-plus"></i>
-	                <?php echo plugin_lang_get('title') . ': ' . plugin_lang_get('config_new_file') ?>
-	            </h4>
-	        </div>
-	        <div class="widget-body">
-	            <div class="widget-main no-padding">
-	                <div class="form-container">
-	                    <div class="table-responsive">
-	                        <table class="table table-bordered table-condensed table-striped">
-	                            <tr>
-	                                <td class="category">
-	                                    <?php echo plugin_lang_get('new_file_title') ?>
-	                                </td>
-	                                <td>
-	                                    <input name="file_title" maxlength="30" size="30" value="" />
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <td class="category">
-	                                    <?php echo plugin_lang_get('new_file_data') ?>
-	                                </td>
-	                                <td>
-	                                    <textarea name="file_data" cols="70" rows="5" required></textarea>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <td class="category">
-	                                    <?php echo plugin_lang_get('new_file_mandatory') ?>
-	                                </td>
-	                                <td>
-	                                    <input type="checkbox" name="file_mandatory"/>
-	                                </td>
-	                            </tr>
-	                        </table>
-	                    </div>
-	                </div>
-	            </div>
+		<?php echo $t_form_security_field ?>
+		<div class="widget-box widget-color-blue2">
+			<div class="widget-header widget-header-small">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-plus"></i>
+					<?php echo plugin_lang_get('title') . ': ' . plugin_lang_get('config_new_file') ?>
+				</h4>
+			</div>
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<div class="form-container">
+						<div class="table-responsive">
+							<table class="table table-bordered table-condensed table-striped">
+								<tr>
+									<td class="category">
+										<?php echo plugin_lang_get('new_file_title') ?>
+									</td>
+									<td>
+										<input name="file_title" maxlength="30" size="30" value="" />
+									</td>
+								</tr>
+								<tr>
+									<td class="category">
+										<?php echo plugin_lang_get('new_file_data') ?>
+									</td>
+									<td>
+										<textarea name="file_data" cols="70" rows="5" required></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td class="category">
+										<?php echo plugin_lang_get('new_file_mandatory') ?>
+									</td>
+									<td>
+										<input type="checkbox" name="file_mandatory"/>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
 	
-	            <div class="widget-toolbox padding-8 clearfix">
-	                <input type="submit" name="submit" class="btn btn-primary btn-white btn-round" value="<?php echo plugin_lang_get('config_new_file') ?>" />
-	            </div>
+				<div class="widget-toolbox padding-8 clearfix">
+					<input type="submit" name="submit" class="btn btn-primary btn-white btn-round"
+						  value="<?php echo plugin_lang_get('config_new_file') ?>" />
+				</div>
 	
-	        </div>
-	    </div>
+			</div>
+		</div>
 	</form>
 	<br><br>
-        <div class="widget-box widget-color-blue2">
-            <div class="widget-header widget-header-small">
-                <h4 class="widget-title lighter">
-                    <i class="ace-icon fa fa-th-list"></i>
-                    <?php echo plugin_lang_get('title') . ': ' . plugin_lang_get('config_existing') ?>
-                </h4>
-            </div>
-            <div class="widget-body">
-                <div class="widget-main no-padding">
-                    <div class="form-container">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-condensed table-striped">
+		<div class="widget-box widget-color-blue2">
+			<div class="widget-header widget-header-small">
+				<h4 class="widget-title lighter">
+					<i class="ace-icon fa fa-th-list"></i>
+					<?php echo plugin_lang_get('title') . ': ' . plugin_lang_get('config_existing') ?>
+				</h4>
+			</div>
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<div class="form-container">
+						<div class="table-responsive">
+							<table class="table table-bordered table-condensed table-striped">
 
-                                <tr>
-                                    <th><?php echo plugin_lang_get( 'config_file_title' ); ?></th>
-                                    <th><?php echo plugin_lang_get( 'config_file_data' ); ?></th>
-                                    <th><?php echo plugin_lang_get( 'config_file_mandatory' ); ?></th>
-                                    <th><?php echo plugin_lang_get( 'config_file_action' ); ?></th>
-                                </tr>
+								<tr>
+									<th><?php echo plugin_lang_get( 'config_file_title' ); ?></th>
+									<th><?php echo plugin_lang_get( 'config_file_data' ); ?></th>
+									<th><?php echo plugin_lang_get( 'config_file_mandatory' ); ?></th>
+									<th><?php echo plugin_lang_get( 'config_file_action' ); ?></th>
+								</tr>
 
-                                <?php
-                                $i = 0;
-                                $t_query = "SELECT id, title, data, mandatory
+								<?php
+								$i = 0;
+								$t_query = "SELECT id, title, data, mandatory
 											FROM $t_file_table";
-                                $t_result = db_query($t_query);
-                                while( $t_row = db_fetch_array( $t_result ) ) {
-                                    $i++;
-                                    extract( $t_row, EXTR_PREFIX_ALL, 'v' );
-									$v_id         = string_display_line( $v_id );
-                                    $v_title      = string_display_line( $v_title );
-                                    $v_data       = string_display_line( $v_data );
-                                    $v_mandatory  = string_display_line( $v_mandatory );
-                                ?>
-                                <form id="editfile-form-<?php echo $v_id; ?>" method="post" action="<?php echo plugin_page('config_edit') ?>">
-                                    <?php echo $t_form_security_field ?>
-                                    <tr>
-                                        <input type="hidden" name="file_id" value="<?php echo $v_id; ?>" />
-                                        <td>
-                                            <input name="file_title" maxlength="30" size="30" value="<?php echo $v_title; ?>" />
-                                        </td>
-                                        <td>
-                                            <textarea name="file_data" cols="70" rows="5" required><?php echo $v_data; ?></textarea>
-                                        </td>
-                                        <td>
-                                            <input type="checkbox" name="file_mandatory" value="<?php echo OFF ?>" <?php check_checked( (int)$v_mandatory, ON ); ?> />
-                                        </td>
-                                        <td>
-                                            <span class="pull-right">
-                                            <?php
-                                                echo '<input type="submit" name="submit" class="btn btn-primary btn-white btn-round btn-xs" value="' . plugin_lang_get('config_save_file') . '" />';
-                                                echo '&#160;';
-                                                echo '<input type="submit" name="submit" class="btn btn-primary btn-white btn-round btn-xs" value="' . plugin_lang_get('config_delete_file') . '" />';
-                                            ?>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </form>
-                                <?php
-                                } # end for loop
+								$t_result = db_query($t_query);
+								while( $t_row = db_fetch_array( $t_result ) ) {
+									$i++;
+									extract( $t_row, EXTR_PREFIX_ALL, 'v' );
+									$v_id		 = string_display_line( $v_id );
+									$v_title	  = string_display_line( $v_title );
+									$v_data	   = string_display_line( $v_data );
+									$v_mandatory  = string_display_line( $v_mandatory );
+								?>
+								<form id="editfile-form-<?php echo $v_id; ?>" method="post" action="<?php echo plugin_page('config_edit') ?>">
+									<?php echo $t_form_security_field ?>
+									<tr>
+										<input type="hidden" name="file_id" value="<?php echo $v_id; ?>" />
+										<td>
+											<input name="file_title" maxlength="30" size="30" value="<?php echo $v_title; ?>" />
+										</td>
+										<td>
+											<textarea name="file_data" cols="70" rows="5" required><?php echo $v_data; ?></textarea>
+										</td>
+										<td style="text-align:center;">
+											<input type="checkbox" name="file_mandatory"
+												<?php check_checked( (int)$v_mandatory, ON ); ?> />
+										</td>
+										<td>
+											<span class="pull-right">
+											<?php
+												echo '<input type="submit" name="submit" '
+													. 'class="btn btn-primary btn-white btn-round btn-xs" value="'
+													. plugin_lang_get('config_save_file') . '" />';
+												echo '&#160;';
+												echo '<input type="submit" name="submit" '
+													. 'class="btn btn-primary btn-white btn-round btn-xs" value="'
+													. plugin_lang_get('config_delete_file') . '" />';
+											?>
+											</span>
+										</td>
+									</tr>
+								</form>
+								<?php
+								} # end for loop
 
-                                if( $i == 0 ) {
-                                    echo '<tr><td colspan="2">'. plugin_lang_get('no_files_configured').'</td></tr>';
-                                } ?>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+								if( $i == 0 ) {
+									echo '<tr><td colspan="2">'. plugin_lang_get('no_files_configured').'</td></tr>';
+								} ?>
+							</table>
+						</div>
+					</div>
+				</div>
 
-                <div class="widget-toolbox padding-8 clearfix"></div>
-            </div>
-        </div>
-    </div>
-    <div class="space-10"></div>
+				<div class="widget-toolbox padding-8 clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<div class="space-10"></div>
 </div>
 
 

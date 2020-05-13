@@ -34,8 +34,7 @@ if( $f_submit_type == plugin_lang_get( 'config_new_file' ) ) {
 					data  = ?,
 					mandatory = ?
 				WHERE id = ?";
-##FIXME : apply mandatrory ON
-    $t_result = db_query( $t_query, array( trim( $f_file_title ), $f_file_data, $f_file_mandatory, $f_file_id ) );
+    $t_result = db_query( $t_query, array( trim( $f_file_title ), $f_file_data, (int)$f_file_mandatory, $f_file_id ) );
     $t_rows_affected = db_num_rows( $t_result );
 } else if( $f_submit_type == plugin_lang_get( 'config_delete_file' ) ) {
     $f_file_id    = gpc_get_string( 'file_id' );
