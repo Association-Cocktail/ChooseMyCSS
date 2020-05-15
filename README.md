@@ -7,6 +7,14 @@ Copyright (c) 2020 Association Cocktail, Marc-Antoine TURBET-DELOF
 _ChooseMyCSS_ is a plugin for [MantisBT](http://mantisbt.org) that 
 allows the administrator to add some CSS files optional or mandatory for users.
 
+Admin users create and name CSS files.
+
+Some may be taged as mandatory. Then, they are all included for all users.
+
+The others (not tagged as mandatory) can be chosen by stanard users to be applied in addition.
+
+## Change Log
+
 See the [Change log](CHANGELOG.md).
 
 ## Installation
