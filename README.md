@@ -47,9 +47,13 @@ If you chose multi mandatory CSS files, they will be added in the order in which
 
 ## Screen Shots
 
+In the plugin config page *Manage → Manage Plugins → ChooseMyCSS*
+
 ![add CSS file](screenshots/add_file.png "To add new CSS file")
 
 ![edit CSS files](screenshots/edit_file.png "To edit existing CSS file")
+
+In user preferences page  *My account → Preferences* or *Manage → Manage Users → _login_ → Account Preferences*
 
 ![choose CSS file](screenshots/choose_file.png "Choose CSS file in account preferences")
 
