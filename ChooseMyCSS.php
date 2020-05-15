@@ -25,7 +25,7 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 
 		$this->author = 'Association Cocktail';         # Author/team name
 		$this->contact = 'resp-infra@asso-cocktail.fr';        # Author/team e-mail address
-		$this->url = 'https://asso-cocktail.fr';            # Support webpage
+		$this->url = 'https://github.com/Association-Cocktail/ChooseMyCSS';            # Support webpage
     }
 
 	function hooks() {
