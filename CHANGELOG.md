@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## [0.2.0] - 2013-05-13
+## [0.2.0] - 2020-05-13
 
 ### Fixed
 
@@ -20,7 +20,7 @@ All notable changes to this project will be documented in this file.
 - Tag to mandatory remove personals use for the same CSS file
 
 
-## [0.1.0] - 2013-05-13
+## [0.1.0] - 2020-05-13
 
 ### Added
 
