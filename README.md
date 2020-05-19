@@ -26,7 +26,7 @@ The plugin requires [MantisBT 2.24](https://github.com/mantisbt/mantisbt/tree/re
 ### Setup Instructions
 
 1. Download or clone a copy of the 
-   [plugin's code](https://github.com/Association-Cocktail/ChooseMyCSS).
+   [plugin's code](https://github.com/mantisbt-plugins/ChooseMyCSS).
 2. Copy the plugin (the `ChooseMyCSS/` directory) into your Mantis
    installation's `plugins/` directory.
 3. While logged in as an administrator, go to *Manage → Manage Plugins*.
@@ -61,14 +61,14 @@ In user preferences page  *My account → Preferences* or *Manage → Manage Use
 ## Support
 
 If you wish to file a
-[bug report](https://github.com/Association-Cocktail/ChooseMyCSS/issues/new),
+[bug report](https://github.com/mantisbt-plugins/ChooseMyCSS/issues/new),
 or have questions related to use and installation, please use the plugin's
-[issues tracker](https://github.com/Association-Cocktail/ChooseMyCSS/issues)
+[issues tracker](https://github.com/mantisbt-plugins/ChooseMyCSS/issues)
 on GitHub.
 
 All code contributions (bug fixes, new features and enhancements, translations) 
 are welcome and highly encouraged, preferably as a
-[Pull Request](https://github.com/Association-Cocktail/ChooseMyCSS/compare).
+[Pull Request](https://github.com/mantisbt-plugins/ChooseMyCSS/compare).
 
 The latest source code is available on
-[GitHub](https://github.com/Association-Cocktail/ChooseMyCSS).
+[GitHub](https://github.com/mantisbt-plugins/ChooseMyCSS).

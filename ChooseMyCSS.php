@@ -1,7 +1,7 @@
 <?php
 /**
  * ChooseMyCSS Plugin for MantisBT
- * @link https://github.com/Association-cocktail/ChooseMyCSS
+ * @link https://github.com/mantisbt-plugins/ChooseMyCSS
  *
  * @author    Marc-Antoine TURBET-DELOF<marc-antoine.turbet-delof@asso-cocktail.fr>
  * @copyright Copyright (c) 2020 Association Cocktail, Marc-Antoine TURBET-DELOF
@@ -17,7 +17,7 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );    # Short description of the plugin
 		$this->page = 'config_page';           # Default plugin page
 
-		$this->version = '0.2.0';     # Plugin version string
+		$this->version = '0.2.1';     # Plugin version string
 		$this->requires = array(    # Plugin dependencies
 		    'MantisCore' => '2.24',  # Should always depend on an appropriate
 		                            # version of MantisBT
@@ -25,7 +25,7 @@ class ChooseMyCSSPlugin extends MantisPlugin {
 
 		$this->author = 'Association Cocktail';         # Author/team name
 		$this->contact = 'resp-infra@asso-cocktail.fr';        # Author/team e-mail address
-		$this->url = 'https://github.com/Association-Cocktail/ChooseMyCSS';            # Support webpage
+		$this->url = 'https://github.com/mantisbt-plugins/ChooseMyCSS';            # Support webpage
     }
 
 	function hooks() {

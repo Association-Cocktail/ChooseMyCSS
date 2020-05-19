@@ -1,7 +1,7 @@
 <?php
 /**
  * ChooseMyCSS Plugin for MantisBT
- * @link https://github.com/Association-cocktail/ChooseMyCSS
+ * @link https://github.com/mantisbt-plugins/ChooseMyCSS
  *
  * @author	Marc-Antoine TURBET-DELOF<marc-antoine.turbet-delof@asso-cocktail.fr>
  * @copyright Copyright (c) 2020 Association Cocktail, Marc-Antoine TURBET-DELOF
